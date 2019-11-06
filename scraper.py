@@ -15,7 +15,7 @@ def check_price():
 
     title = soup.find(id="productTitle").getText()
     price = soup.find(id="priceblock_ourprice").getText()
-    converted_price = price[0:3]
+    converted_price = float(price[0:3])
 
     if(converted_price < 800):
         send_mail()
@@ -30,7 +30,7 @@ def send_mail():
     server.starttls()
     server.ehlo()
 
-    server.login('ghnodemailer@gmail.com', 'ghnodemailer')
+    server.login('pruebasmanueldev@gmail.com', 'yalasabes99-')
 
     subject = 'Price fell down'
     body = 'Check the amazon link! https://www.amazon.es/gp/product/B07XS4MGQL?pf_rd_p=29e676dc-0c95-4aa0-977c-12e6ad9e2b5b&pf_rd_r=CTE8C60175D2NAVY9671'
@@ -38,8 +38,11 @@ def send_mail():
     msg = f"Subject: {subject}\n\n{body}"
 
     server.sendmail(
-        'ghnodemailer@gmail.com',
+        'pruebasmanueldev@gmail.com',
         'manuelbalbas@gmail.com',
         msg
     )
     print('Hey! Email has been sent!!')
+
+
+check_price()
